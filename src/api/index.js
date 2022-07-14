@@ -15,7 +15,6 @@ export const getPokemonList = async ({ pageParam = 0 }) => {
   const res = await axios.get(url);
   const data = res?.data?.results;
   await delay();
-  console.log(data);
   return data;
 };
 

@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import { css } from '@emotion/react';
-import PokemonDetail from '../pokemonDetail/index.jsx';
-import { getPokemonList } from '../../../api/';
-import PokemonListContainer from './PokemonListContainer.jsx';
+import { getPokemonList } from '@/api';
+
+import PokemonDetail from '@/components/organisms/pokemonDetail';
+import PokemonListContainer from '@/components/organisms/PokemonList/PokemonListContainer';
+import Spinner from '@/components/atoms/Spinner';
 
 let TIMER;
 
@@ -28,7 +30,8 @@ const PokemonList = () => {
     if (!TIMER) {
       TIMER = setTimeout(() => {
         TIMER = null;
-        const windowHeight = window.document.body.getBoundingClientRect().height - window.screen.availHeight + 111;
+        const windowHeight = window.document.body.getBoundingClientRect().height - window.screen.availHeight + 125;
+        // const windowHeight = window.document.body.getBoundingClientRect().height;
         const poz = window.scrollY;
         console.log(`windowHeight: ${windowHeight}, poz: ${poz}`);
 
@@ -65,13 +68,15 @@ const PokemonList = () => {
   };
 
   return (
-    <div>
-      <div css={PokemonListContainer}>
-        <ul>{data?.pages.map((page) => listItems(page))}</ul>
-      </div>
+    <Suspense fallback={<Spinner />}>
+      <div>
+        <div css={PokemonListContainer}>
+          <ul>{data?.pages.map((page) => listItems(page))}</ul>
+        </div>
 
-      {openDetailModal && <PokemonDetail open={openDetailModal} name={selectedName} handleClose={handleClose} />}
-    </div>
+        {openDetailModal && <PokemonDetail open={openDetailModal} name={selectedName} handleClose={handleClose} />}
+      </div>
+    </Suspense>
   );
 };
 

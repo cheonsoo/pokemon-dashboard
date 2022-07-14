@@ -7,6 +7,7 @@ export default css`
     width: 100%;
     height: 50px;
     font-size: 30px;
+    font-weight: 900;
     color: green;
     display: flex;
     align-items: center;
@@ -47,8 +48,28 @@ export default css`
             display: flex;
             align-items: center;
             justify-content: left;
+            flex-direction: row;
+            flex-wrap: wrap;
           }
         }
+      }
+    }
+
+    .tag {
+      display: flex;
+      height: 30px;
+      background-color: RGBA(57, 150, 250, 1);
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 900;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      padding: 2px 10px;
+
+      &.hidden {
+        background-color: RGBA(242, 151, 102, 1);
       }
     }
   }

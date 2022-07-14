@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 export default css`
   padding: 20px;
+  height: 101%;
 
   ul {
     list-style: none;
@@ -15,6 +16,11 @@ export default css`
       margin-right: 10px;
       display: inline-block;
       border-radius: 8px;
+
+      &:hover {
+        background-color: RGBA(1, 152, 122, 1);
+        color: #fff;
+      }
 
       > div {
         width: 100%;

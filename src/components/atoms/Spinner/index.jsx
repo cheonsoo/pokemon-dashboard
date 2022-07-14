@@ -17,6 +17,7 @@ const SpinnerContainer = css`
 `;
 
 const Spinner = () => {
+  console.log('Loading ...');
   let windowHeight = window.document.body.getBoundingClientRect().height - window.screen.availHeight + 111;
   if (!windowHeight) windowHeight = '1000';
 

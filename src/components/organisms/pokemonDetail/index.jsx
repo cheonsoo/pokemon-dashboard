@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { useQuery } from 'react-query';
 import { css } from '@emotion/react';
-import Modal from '../../atoms/modal/index.jsx';
-import { getPokemonDetail } from '../../../api/';
-import PokemonDetailContainer from './PokemonDetailContainer.jsx';
+import { getPokemonDetail } from '@/api';
+import Modal from '@/components/atoms/modal/index.jsx';
+import PokemonDetailContainer from '@/components/organisms/pokemonDetail/PokemonDetailContainer';
 
 const usePrevious = (val) => {
   const ref = useRef();
@@ -39,12 +39,6 @@ const PokemonDetail = ({ name = '' }) => {
               <ul>
                 <li>
                   <div>
-                    <div>Order</div>
-                    <div>{data.order}</div>
-                  </div>
-                </li>
-                <li>
-                  <div>
                     <div>ID</div>
                     <div>{data.id}</div>
                   </div>
@@ -57,14 +51,38 @@ const PokemonDetail = ({ name = '' }) => {
                 </li>
                 <li>
                   <div>
+                    <div>Height</div>
+                    <div>{data.height}</div>
+                  </div>
+                </li>
+                <li>
+                  <div>
                     <div>Weight</div>
                     <div>{data.weight}</div>
                   </div>
                 </li>
                 <li>
                   <div>
-                    <div>Height</div>
-                    <div>{data.height}</div>
+                    <div>Type</div>
+                    <div>
+                      {data.types.map((item, idx) => (
+                        <span className="tag" key={idx}>
+                          {item.type.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <div>Ability</div>
+                    <div>
+                      {data.abilities.map((item, idx) => (
+                        <span className={['tag', `${item.is_hidden ? 'hidden' : ''}`].join(' ')} key={idx}>
+                          {item.ability.name}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </li>
               </ul>
