@@ -8,7 +8,10 @@ import ErrorBoundary from '@/components/atoms/ErrorBoundary/index.jsx';
 import CustomErrorPage from '@/components/organisms/CustomErrorPage/index.jsx';
 
 const queryClient = new QueryClient({
-  suspense: true
+  suspense: true,
+  retry: false,
+  staleTime: 60000,
+  cacheTime: 60000
 });
 
 function App() {

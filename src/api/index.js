@@ -14,7 +14,7 @@ export const getPokemonList = async ({ pageParam = 0 }) => {
   const url = `https://pokeapi.co/api/v2/pokemon?offset=${limit * pageParam}&limit=${limit}`;
   const res = await axios.get(url);
   const data = res?.data?.results;
-  await delay();
+  // await delay();
   return data;
 };
 

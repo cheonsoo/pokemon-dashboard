@@ -6,6 +6,7 @@ import { getPokemonList } from '@/api';
 import PokemonDetail from '@/components/organisms/pokemonDetail';
 import PokemonListContainer from '@/components/organisms/PokemonList/PokemonListContainer';
 import Spinner from '@/components/atoms/Spinner';
+import { useInfiniteQueryGetPokemonList, useQueryGetPokemonDetail } from '@/store';
 
 let TIMER;
 
@@ -15,11 +16,8 @@ const PokemonList = () => {
   const [selectedName, setSelectedName] = useState('');
   const [openDetailModal, setOpenDetailModal] = useState(false);
 
-  const { data, fetchNextPage } = useInfiniteQuery('get-pokemon-list', getPokemonList, {
-    refetchOnWindowFocus: false,
-    suspense: true,
-    getNextPageParam: (lastPage) => lastPage.nextCursor
-  });
+  const { data, fetchNextPage } = useInfiniteQueryGetPokemonList();
+  const testData = useQueryGetPokemonDetail('pidgey');
 
   const setPageRef = (_page) => {
     pageRef.current = _page;
@@ -33,10 +31,10 @@ const PokemonList = () => {
         const windowHeight = window.document.body.getBoundingClientRect().height - window.screen.availHeight + 125;
         // const windowHeight = window.document.body.getBoundingClientRect().height;
         const poz = window.scrollY;
-        console.log(`windowHeight: ${windowHeight}, poz: ${poz}`);
+        // console.log(`windowHeight: ${windowHeight}, poz: ${poz}`);
 
         if (poz === 0) {
-          console.log('hit top');
+          // console.log('hit top');
         } else if (poz > windowHeight) {
           console.log('hit bottom');
           setPageRef(pageRef.current + 1);

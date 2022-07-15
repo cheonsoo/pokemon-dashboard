@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 export default css`
   padding: 20px;
-  height: 101%;
+  /* height: 101%; */
 
   ul {
     list-style: none;
